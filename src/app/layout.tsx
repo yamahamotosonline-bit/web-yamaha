@@ -39,17 +39,31 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { CotizarButton } from "@/components/ui/CotizarButton";
-import { GoogleAnalytics } from "@/components/layout/GoogleAnalytics";
+import { AnalyticsManager } from "@/components/layout/AnalyticsManager";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Obtenemos el GTM ID aquí para poder inyectar el noscript
+  const gtmId = process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
+
   return (
     <html lang="es-CO" className="scroll-smooth overflow-x-hidden">
       <body className={`${inter.variable} font-sans bg-background text-foreground flex flex-col min-h-screen pt-16 md:pt-20 overflow-x-hidden w-full relative`}>
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GA_ID} />}
+        {/* GTM Fallback for users with disabled JS */}
+        {gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        )}
+        <AnalyticsManager />
         <Header />
         <main className="flex-grow overflow-x-hidden w-full">
           {children}

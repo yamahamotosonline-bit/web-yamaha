@@ -10,6 +10,7 @@ import { ChevronRight, Check } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import FeatureSlider from "@/components/ui/FeatureSlider";
 import { QuoteModal } from "@/components/ui/QuoteModal";
+import { trackEvent } from "@/lib/analytics";
 
 export function MotorcycleDetail({ motorcycle }: { motorcycle: Motorcycle }) {
   const [activeImage, setActiveImage] = useState(
@@ -144,6 +145,9 @@ export function MotorcycleDetail({ motorcycle }: { motorcycle: Motorcycle }) {
                 href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(motorcycle.whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                id="btn-whatsapp-detail"
+                data-event="click_whatsapp"
+                onClick={() => trackEvent('click_whatsapp', { source: 'motorcycle_detail', motorcycle: motorcycle.name })}
                 className="flex-1 bg-white border-2 border-yamaha-blue text-yamaha-blue text-center font-bold uppercase tracking-wider py-4 px-6 rounded-full hover:bg-yamaha-blue hover:text-white transition-all"
               >
                 Contactar por WhatsApp

@@ -90,7 +90,7 @@ export function Header() {
                             muted
                             loop
                             playsInline
-                            preload="metadata"
+                            preload="none"
                             disablePictureInPicture
                             disableRemotePlayback
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

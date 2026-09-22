@@ -2,6 +2,7 @@
 
 import { FileText } from "lucide-react";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -24,6 +25,9 @@ export function CotizarButton() {
         >
           <Link
             href="/contacto"
+            id="btn-cotizar-float"
+            data-event="click_request_information"
+            onClick={() => trackEvent('click_request_information', { source: 'floating_button' })}
             className="bg-yamaha-blue hover:bg-blue-800 text-white shadow-lg transition-colors flex flex-col items-center justify-center p-3 w-20 md:w-24 gap-1 group"
             aria-label="Ir a cotizar"
           >

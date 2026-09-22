@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 
 export interface SlideData {
@@ -102,17 +103,26 @@ export function Hero({ slides, autoPlayInterval = 5000 }: HeroProps) {
               <source src={currentSlide.videoSrc} type="video/mp4" />
             </video>
           ) : (
-            <picture>
+            <>
               {currentSlide.mobileImageSrc && (
-                <source media="(max-width: 767px)" srcSet={currentSlide.mobileImageSrc} />
+                <Image
+                  src={currentSlide.mobileImageSrc}
+                  alt="Yamaha Banner"
+                  fill
+                  priority={currentIndex === 0}
+                  sizes="100vw"
+                  className="absolute inset-0 w-full h-full object-cover object-center bg-yamaha-dark md:hidden"
+                />
               )}
-              <source media="(min-width: 768px)" srcSet={currentSlide.imageSrc} />
-              <img
+              <Image
                 src={currentSlide.imageSrc}
                 alt="Yamaha Banner"
-                className="absolute inset-0 w-full h-full object-cover object-center bg-yamaha-dark"
+                fill
+                priority={currentIndex === 0}
+                sizes="100vw"
+                className={`absolute inset-0 w-full h-full object-cover object-center bg-yamaha-dark ${currentSlide.mobileImageSrc ? 'hidden md:block' : ''}`}
               />
-            </picture>
+            </>
           )}
 
           {/* Gradient Overlay - Always show a light gradient so nav is visible, or remove it */}

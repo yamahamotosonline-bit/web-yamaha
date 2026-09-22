@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
+import { trackEvent } from "@/lib/analytics";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export function ContactSection() {
@@ -11,6 +12,9 @@ export function ContactSection() {
     const phone = formData.get("phone") as string;
     const subject = formData.get("subject") as string;
     const message = formData.get("message") as string;
+
+    // Track the successful form submission event
+    trackEvent('contact_form_submit', { form_type: 'general_contact', subject });
 
     const whatsappMessage = `*Nuevo contacto desde la web*\n\n*Nombre:* ${name}\n*Teléfono:* ${phone}\n*Asunto:* ${subject}\n*Mensaje:* ${message}`;
     const whatsappUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -47,7 +51,15 @@ export function ContactSection() {
               <Phone className="w-6 h-6 text-yamaha-red flex-shrink-0" />
               <div>
                 <span className="block font-bold text-yamaha-dark">Teléfono y WhatsApp</span>
-                <span className="text-gray-700">{siteConfig.phone}</span>
+                <a 
+                  href={`tel:+${siteConfig.whatsapp}`}
+                  onClick={() => trackEvent('click_phone', { source: 'contact_page' })}
+                  id="link-phone-contact"
+                  data-event="click_phone"
+                  className="block text-gray-700 hover:text-yamaha-red transition-colors"
+                >
+                  {siteConfig.phone}
+                </a>
               </div>
             </div>
 

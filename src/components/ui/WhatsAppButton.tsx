@@ -2,6 +2,7 @@
 
 
 import { siteConfig } from "@/config/site";
+import { trackEvent } from "@/lib/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -32,6 +33,9 @@ export function WhatsAppButton() {
           href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hola, quisiera recibir más información.")}`}
           target="_blank"
           rel="noopener noreferrer"
+          id="btn-whatsapp-float"
+          data-event="click_whatsapp"
+          onClick={() => trackEvent('click_whatsapp', { source: 'floating_button' })}
           className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center"
           aria-label="Contactar por WhatsApp"
         >

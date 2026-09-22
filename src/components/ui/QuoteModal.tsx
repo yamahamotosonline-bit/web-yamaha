@@ -41,6 +41,15 @@ export function QuoteModal({ motorcycle, isOpen, onClose }: QuoteModalProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Evento de Google Analytics / Ads
+    import("@/lib/analytics").then(({ trackEvent }) => {
+      trackEvent("quote_request", {
+        motorcycle: motorcycle.name,
+        payment_type: tipoPago,
+        price: motorcycle.price
+      });
+    });
+
     let mensaje = `Hola, mi nombre es ${nombre} (Cédula: ${cedula}).\n`;
     mensaje += `Me interesa solicitar una cotización para la Yamaha ${motorcycle.name}.\n`;
     mensaje += `Forma de pago elegida: ${tipoPago.toUpperCase()}.\n`;
