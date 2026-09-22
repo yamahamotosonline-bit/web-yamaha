@@ -40,6 +40,7 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { CotizarButton } from "@/components/ui/CotizarButton";
 import { AnalyticsManager } from "@/components/layout/AnalyticsManager";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 
 export default function RootLayout({
   children,
@@ -64,6 +65,7 @@ export default function RootLayout({
           </noscript>
         )}
         <AnalyticsManager />
+        <CookieConsent />
         <Header />
         <main className="flex-grow overflow-x-hidden w-full">
           {children}
