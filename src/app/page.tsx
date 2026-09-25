@@ -17,7 +17,7 @@ export default function Home() {
       imageSrc: "/images/hero-blue-days.png",
       mobileImageSrc: "/images/mobile-hero-1.png",
       primaryCtaText: "WhatsApp",
-      primaryCtaLink: "https://wa.me/573102615894",
+      primaryCtaLink: "https://wa.me/573138439872",
       secondaryCtaText: "Ver Modelos",
       secondaryCtaLink: "/motos"
     },
@@ -26,7 +26,7 @@ export default function Home() {
       imageSrc: "/images/hero-banner-2.png",
       mobileImageSrc: "/images/mobile-hero-2.png",
       primaryCtaText: "WhatsApp",
-      primaryCtaLink: "https://wa.me/573102615894",
+      primaryCtaLink: "https://wa.me/573138439872",
       secondaryCtaText: "VER MODELOS",
       secondaryCtaLink: "/motos",
     },
