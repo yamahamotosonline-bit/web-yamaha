@@ -9,5 +9,4 @@ export const siteConfig = {
   address: "Atención a nivel nacional, Colombia",
   businessHours: "Lunes a Viernes: 8:00 AM - 6:00 PM | Sábado: 9:00 AM - 1:00 PM",
   serviceArea: ["Todo el territorio nacional", "Envíos a toda Colombia"],
-  }
 };
